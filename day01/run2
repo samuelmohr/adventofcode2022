@@ -1,0 +1,1 @@
+cat $1 | awk -f sum.awk | sort -n | tail -n 3 | awk -f sum.awk
