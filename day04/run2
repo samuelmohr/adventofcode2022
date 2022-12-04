@@ -1,0 +1,1 @@
+cat $1 | php findoverlap.php | awk -f sum.awk 
