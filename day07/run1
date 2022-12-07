@@ -1,0 +1,1 @@
+cat $1 | awk -f listdirs.awk | awk -f sum_filter.awk

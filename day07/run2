@@ -1,0 +1,8 @@
+#!/bin/bash
+
+total=`cat $1 | awk -f listdirs.awk | tail -n 1`
+disk=70000000
+update=30000000
+let free=$disk-$total
+let needed=$update-$free
+cat $1 | awk -f listdirs.awk | awk -v filter_min=$needed -f find_small.awk
