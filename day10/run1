@@ -1,0 +1,1 @@
+cat $1 | awk -f scores.awk | awk -f sum.awk
