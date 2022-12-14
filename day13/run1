@@ -1,0 +1,1 @@
+cat $1 | ./compare.sh | awk -f sum.awk
