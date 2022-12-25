@@ -1,1 +1,1 @@
-cat $1 | ./compare.sh | awk -f sum.awk
+cat $1 | ./compare.rb | awk -f sum.awk

@@ -1,1 +1,1 @@
-cat $1 | ./position.sh | nl -w1 -s' ' | grep " \[\[2\]\]$\| \[\[6\]\]$" | cut -d" " -f1 | awk 'BEGIN {prod=1} /^[0-9]*$/ { prod*=$1} END {print prod}'
+cat $1 | ./position.rb | nl -w1 -s' ' | grep " \[\[2\]\]$\| \[\[6\]\]$" | cut -d" " -f1 | awk 'BEGIN {prod=1} /^[0-9]*$/ { prod*=$1} END {print prod}'
