@@ -7,15 +7,12 @@
 #include <memory>
 
 // T is pressure, V is valve
-//template <class T,class V>
-//class InstanceWithElephants;
-
 template <class T,class V>
 class Instance {
   public:
       enum Type { undecided, start, pass, open, end};
 
-  public:
+  private:
     const int total_time;
     const int current_time;
     const std::reference_wrapper<const V> valve;
@@ -32,13 +29,13 @@ class Instance {
     ~Instance() {}
 
 
-    T branch(T to_exceed);
+    T branch();
     T lowerbound() const;
     T upperbound() const;
     std::string report() const;
 
     friend bool operator==(const std::reference_wrapper<const V>& lhs, const std::reference_wrapper<const V>& rhs);
-//    friend class InstanceWithElephants<T,V>;
+
 };
 
 #endif // INSTANCE_H

@@ -4,6 +4,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_library(ProblemInstance STATIC
   implementations.cpp
-  valve.h twosymbol.h tunnelmap.h instance.h instancewithelephant.h
+  valve.h twosymbol.h tunnelmap.h instance.h
 )
 
