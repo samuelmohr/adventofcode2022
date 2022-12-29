@@ -2,6 +2,7 @@
 #include "lib/twosymbol.h"
 #include "lib/tunnelmap.h"
 #include "lib/instance.h"
+#include "lib/instancewithelephant.h"
 #include <iostream>
 #include <fstream>
 #include <regex>
@@ -69,7 +70,7 @@ std::reference_wrapper<Valve<TwoSymbol,int>> findValve(TwoSymbol name) {
     return std::ref(**src);
 }
 
-void puzzle(int task){
+void puzzle1(){
     cout << "PART 1:" << endl;
     const int total_time=30;
     const TwoSymbol start{'A','A'};
@@ -79,7 +80,23 @@ void puzzle(int task){
         if(valve->getRate()>0)
             allValvesWithPressure.push_back(std::cref(*valve));
     auto problem = std::make_unique<Instance<int,Valve<TwoSymbol,int>>>(total_time,0,findValve(start).get(),true,tunnelmap,allValvesWithPressure,empty,Instance<int,Valve<TwoSymbol,int>>::start);
-    int best=problem->branch();
+    int best=problem->branch(0);
+    cout << problem->report() << endl;
+    cout << "Most released pressure: " << best << endl;
+}
+
+void puzzle2(){
+    cout << endl << "PART 2:" << endl;
+    const int total_time=26;
+    const TwoSymbol start{'A','A'};
+    std::list<std::reference_wrapper<const Valve<TwoSymbol,int>>> empty1;
+    std::list<std::reference_wrapper<const Valve<TwoSymbol,int>>> empty2;
+    std::list<std::reference_wrapper<const Valve<TwoSymbol,int>>> allValvesWithPressure;
+    for(auto& valve : valves)
+        if(valve->getRate()>0)
+            allValvesWithPressure.push_back(std::cref(*valve));
+    auto problem = std::make_unique<InstanceWithElephant<int,Valve<TwoSymbol,int>>>(total_time,0,findValve(start).get(),true,findValve(start).get(),true,tunnelmap,allValvesWithPressure,empty1,empty2,Instance<int,Valve<TwoSymbol,int>>::start,Instance<int,Valve<TwoSymbol,int>>::start);
+    int best=problem->branch(0);
     cout << problem->report() << endl;
     cout << "Most released pressure: " << best << endl;
 }
@@ -91,8 +108,8 @@ int main(int argc, char *argv[]) {
     }
     
     read(argv[1]);
-    puzzle(1);
-//    puzzle(2,argv[1]);
+    puzzle1();
+    puzzle2();
 }
 
 
